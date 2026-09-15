@@ -1,0 +1,28 @@
+name: Tap CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  required:
+    name: required
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - name: Check out tap
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Validate formula
+        run: |
+          ruby -c Formula/agentbox.rb
+          brew style Formula/agentbox.rb
+          if ! grep -Eq 'sha256 "0{64}"' Formula/agentbox.rb; then
+            brew install --formula ./Formula/agentbox.rb
+            brew test agentbox
+          fi
