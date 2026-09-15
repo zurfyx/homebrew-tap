@@ -4,7 +4,7 @@ class Agentbox < Formula
   # Release automation replaces these three identity lines before opening the tap PR.
   url "https://github.com/zurfyx/agentbox/releases/download/v0.1.0/agentbox-0.1.0.tar.gz"
   version "0.1.0"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  sha256 "e0d8159d80408f38cd0e57434786035b5b83dcb1e1b8a39c1620fa947c36c429"
   license "MIT"
 
   depends_on "jq"
