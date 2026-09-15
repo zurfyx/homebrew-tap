@@ -23,6 +23,7 @@ jobs:
           ruby -c Formula/agentbox.rb
           brew style Formula/agentbox.rb
           if ! grep -Eq 'sha256 "0{64}"' Formula/agentbox.rb; then
-            brew install --formula ./Formula/agentbox.rb
-            brew test agentbox
+            brew tap zurfyx/tap "$GITHUB_WORKSPACE"
+            brew install zurfyx/tap/agentbox
+            brew test zurfyx/tap/agentbox
           fi
