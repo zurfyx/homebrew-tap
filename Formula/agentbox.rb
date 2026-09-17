@@ -2,9 +2,9 @@ class Agentbox < Formula
   desc "Run personal Claude Code and Codex sessions in a pinned container runtime"
   homepage "https://github.com/zurfyx/agentbox"
   # Source template only: release automation renders these three identity lines for the tap.
-  url "https://github.com/zurfyx/agentbox/releases/download/v0.1.8/agentbox-0.1.8.tar.gz"
-  version "0.1.8"
-  sha256 "d5c8ded81d1332f2f19d30f47a23fc39b467935429412b7b0a3b8051f9c4cb7d"
+  url "https://github.com/zurfyx/agentbox/releases/download/v0.1.9/agentbox-0.1.9.tar.gz"
+  version "0.1.9"
+  sha256 "bf65dfc7f7e6e2570d071310da310a16e990dc996d15e711f12dd669787e5f56"
   license "MIT"
 
   depends_on "jq"
@@ -22,6 +22,12 @@ class Agentbox < Formula
     fish_completion.install "completions/agentbox.fish"
 
     pkgshare.install "README.md", "LICENSE", "THIRD_PARTY_NOTICES.md"
+    (pkgshare/"docs").install(
+      "docs/development.md",
+      "docs/release.md",
+      "docs/security.md",
+      "docs/usage.md",
+    )
   end
 
   test do
@@ -30,6 +36,10 @@ class Agentbox < Formula
     assert_predicate bin/"agentbox-host-bridge", :executable?
     assert_match "usage: agentbox-host-bridge", shell_output("#{bin}/agentbox-host-bridge --help")
     assert_match "agentbox #{version}", shell_output("#{bin}/agentbox --version")
+    assert_predicate pkgshare/"docs/usage.md", :file?
+    assert_predicate pkgshare/"docs/security.md", :file?
+    assert_predicate pkgshare/"docs/development.md", :file?
+    assert_predicate pkgshare/"docs/release.md", :file?
     if (HOMEBREW_PREFIX/"bin/agentbox").symlink?
       assert_match "agentbox #{version}", shell_output("#{HOMEBREW_PREFIX}/bin/agentbox --version")
     end
