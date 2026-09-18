@@ -2,9 +2,9 @@ class Agentbox < Formula
   desc "Run personal Claude Code and Codex sessions in a pinned container runtime"
   homepage "https://github.com/zurfyx/agentbox"
   # Source template only: release automation renders these three identity lines for the tap.
-  url "https://github.com/zurfyx/agentbox/releases/download/v0.1.13/agentbox-0.1.13.tar.gz"
-  version "0.1.13"
-  sha256 "a346365cdcaac86b2adf61d86b074bdf06f5c3610320419be38e48e649c396fe"
+  url "https://github.com/zurfyx/agentbox/releases/download/v0.1.14/agentbox-0.1.14.tar.gz"
+  version "0.1.14"
+  sha256 "d74d4e5dc34721d60a4f6297562c6374ada41fa4b6f6e609a45d67eecfdc32b0"
   license "MIT"
 
   depends_on "jq"
