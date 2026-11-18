@@ -12,18 +12,25 @@ jobs:
   required:
     name: required
     runs-on: macos-15
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Check out tap
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - name: Validate formula
+      - name: Validate every formula
         run: |
-          ruby -c Formula/agentbox.rb
-          brew style Formula/agentbox.rb
-          if ! grep -Eq 'sha256 "0{64}"' Formula/agentbox.rb; then
-            brew tap zurfyx/tap "$GITHUB_WORKSPACE"
-            brew install zurfyx/tap/agentbox
-            brew test zurfyx/tap/agentbox
-          fi
+          set -eu
+          brew tap zurfyx/tap "$GITHUB_WORKSPACE"
+          for file in Formula/*.rb; do
+            name=$(basename "$file" .rb)
+            echo "::group::$name"
+            ruby -c "$file"
+            brew style "$file"
+            # A formula still on its all-zero template checksum has nothing to install.
+            if ! grep -Eq 'sha256 "0{64}"' "$file"; then
+              brew install "zurfyx/tap/$name"
+              brew test "zurfyx/tap/$name"
+            fi
+            echo "::endgroup::"
+          done
