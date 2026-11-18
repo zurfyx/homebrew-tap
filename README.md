@@ -7,4 +7,5 @@ brew install zurfyx/tap/agentbox
 ```
 
 Formula updates are proposed by the corresponding project's release workflow
-and merge only after this tap's required CI succeeds.
+and merge only after this tap's required CI, which installs and tests every
+formula, succeeds.
