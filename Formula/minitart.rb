@@ -1,9 +1,9 @@
 class Minitart < Formula
   desc "GitHub Actions runners on your own Mac, every job in a fresh Tart VM"
   homepage "https://minitart.rovira.sh"
-  url "https://github.com/zurfyx/minitart/releases/download/v0.1.1/minitart-0.1.1.tar.gz"
-  version "0.1.1"
-  sha256 "0698a0b5750915b2c343c28a4c48f62e409e0062a4df2ec9f094ee99bc3271ee"
+  url "https://github.com/zurfyx/minitart/releases/download/v0.1.2/minitart-0.1.2.tar.gz"
+  version "0.1.2"
+  sha256 "2cf2c64b37a63bac1c8abaa4788b8da9d2951762039e74c8bb6ef583adee00dd"
   license "MIT"
 
   depends_on arch: :arm64
@@ -21,12 +21,11 @@ class Minitart < Formula
 
   def caveats
     <<~EOS
-      minitart drives Tart and Softnet, which come from their own tap:
-        brew install openai/tools/tart openai/tools/softnet
-        brew pin softnet
+      One command sets the rest up:
+        minitart doctor --fix
 
-      Then `minitart doctor` says what is left to set up, and
-      `minitart doctor --fix` does the parts that need your password.
+      It installs Tart and Softnet from their tap if they are missing, and does
+      the parts that need your password. `minitart doctor` alone only looks.
       The whole setup, step by step: #{opt_pkgshare}/docs/setup.md
 
       To upgrade, run `minitart upgrade` rather than `brew upgrade`: it waits
