@@ -34,3 +34,20 @@ jobs:
             fi
             echo "::endgroup::"
           done
+      - name: Validate every cask
+        run: |
+          set -eu
+          brew tap zurfyx/tap "$GITHUB_WORKSPACE" 2>/dev/null || true
+          for file in Casks/*.rb; do
+            [ -e "$file" ] || continue
+            name=$(basename "$file" .rb)
+            echo "::group::$name"
+            ruby -c "$file"
+            brew style "$file"
+            # A cask still on its all-zero template checksum has nothing to install.
+            if ! grep -Eq 'sha256 "0{64}"' "$file"; then
+              brew install --cask "zurfyx/tap/$name"
+              brew uninstall --cask "zurfyx/tap/$name"
+            fi
+            echo "::endgroup::"
+          done
