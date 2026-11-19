@@ -1,9 +1,9 @@
 class Minitart < Formula
   desc "GitHub Actions runners on your own Mac, every job in a fresh Tart VM"
   homepage "https://minitart.rovira.sh"
-  url "https://github.com/zurfyx/minitart/releases/download/v0.1.14/minitart-0.1.14.tar.gz"
-  version "0.1.14"
-  sha256 "2bb7af35bdd6c8c08ae8853554a944d6e74cb824dd17063a93f2118d88fa272e"
+  url "https://github.com/zurfyx/minitart/releases/download/v0.1.15/minitart-0.1.15.tar.gz"
+  version "0.1.15"
+  sha256 "9e91f1455a1b01ed6a59a0147089c396a07a6e003c386f0bf77aac080738750b"
   license "MIT"
 
   depends_on arch: :arm64
