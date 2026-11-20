@@ -1,6 +1,6 @@
 cask "minitart-app" do
-  version "0.1.0"
-  sha256 "e096f7e3ff724418d1b475719d0621ab86b09876c0aad79381a6bfa74915f2cb"
+  version "0.1.1"
+  sha256 "ce6b250e1ebc9f0d5f0be2dd081e34f92efbdcdecb137351d574a1ecd17da875"
 
   url "https://github.com/zurfyx/minitart/releases/download/app-v#{version}/minitart-app-#{version}.zip"
   name "minitart"
